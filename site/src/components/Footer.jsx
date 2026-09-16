@@ -147,25 +147,6 @@ export default function Footer({ brand, footerLinks }) {
               </div>
             </Reveal>
 
-            <Reveal delay={180}>
-              <div style={{ display: "grid", gap: 14 }}>
-                <h4 style={{ fontSize: 17, color: "#fff" }}>Our camps</h4>
-                <ul style={{ display: "grid", gap: 10 }}>
-                  {(footerLinks?.sites ?? []).map((l) => (
-                    <li key={l}>
-                      <a
-                        className="nav-link"
-                        href="#top"
-                        style={{ fontSize: 15, color: "rgba(255,255,255,0.72)" }}
-                      >
-                        {l}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-
             <Reveal delay={260}>
               <div style={{ display: "grid", gap: 14 }}>
                 <h4 style={{ fontSize: 17, color: "#fff" }}>Season updates</h4>

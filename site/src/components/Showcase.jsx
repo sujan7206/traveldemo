@@ -1,11 +1,8 @@
 import React from "react";
 import Scene from "./Scene.jsx";
 import { shell, AnimatedHeading, Button, Eyebrow, Reveal, Stars } from "./ui.jsx";
-import { useCountUp } from "../hooks/useMotion.js";
 
 export default function Showcase({ showcase }) {
-  const guests = useCountUp(showcase?.happyGuests ?? 250);
-
   return (
     <section style={{ background: "#fff", padding: "96px 0" }}>
       <div style={{ ...shell, display: "grid", gap: 40 }}>
@@ -61,7 +58,7 @@ export default function Showcase({ showcase }) {
                 }}
               >
                 <h3 style={{ fontSize: 24, color: "#fff", maxWidth: 380 }}>
-                  Routes we walked ourselves before selling a single night
+                  Routes we walked ourselves before publishing a single itinerary
                 </h3>
                 <p style={{ fontSize: 15, color: "rgba(255,255,255,0.8)", maxWidth: 420 }}>
                   {showcase?.blurb}
@@ -79,7 +76,6 @@ export default function Showcase({ showcase }) {
           <div style={{ display: "grid", gap: 24, alignContent: "start" }}>
             <Reveal direction="right">
               <div
-                ref={guests.ref}
                 className="card"
                 style={{
                   background: "var(--forest)",
@@ -90,11 +86,9 @@ export default function Showcase({ showcase }) {
                   gap: 6,
                 }}
               >
-                <strong className="display" style={{ fontSize: 40 }}>
-                  {guests.value}K+
-                </strong>
+                <strong className="display" style={{ fontSize: 30 }}>Locally planned</strong>
                 <span style={{ fontSize: 14.5, color: "rgba(255,255,255,0.78)" }}>
-                  Guests hosted since our first season
+                  Routes shaped with guides who know each landscape in every season
                 </span>
               </div>
             </Reveal>
@@ -119,13 +113,6 @@ export default function Showcase({ showcase }) {
                   <span style={{ fontSize: 14, color: "var(--ink-soft)" }}>
                     ({showcase?.rating}/{showcase?.ratingScale}) guest rating
                   </span>
-                </div>
-                <div style={{ textAlign: "right" }}>
-                  <span style={{ fontSize: 13, color: "var(--ink-soft)" }}>From</span>
-                  <strong className="display" style={{ display: "block", fontSize: 28 }}>
-                    ${showcase?.priceFrom}
-                  </strong>
-                  <span style={{ fontSize: 13, color: "var(--ink-soft)" }}>per night</span>
                 </div>
               </div>
             </Reveal>

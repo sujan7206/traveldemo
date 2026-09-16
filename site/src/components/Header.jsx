@@ -11,12 +11,11 @@ const nav = [
   {
     label: "More",
     children: [
-      "Stay Details",
+      "Journey Details",
       "Journal Entry",
       "Our Trips",
       "Trip Details",
       "Our Guides",
-      "Pricing",
       "Testimonials",
       "Gallery",
       "FAQs",

@@ -20,8 +20,8 @@ export default function WhatWeDo({ whatWeDo }) {
             <Reveal direction="left">
               <SectionHead
                 eyebrow="What we do"
-                heading="Adventure and comfort, held in the same week"
-                blurb="We design trips that keep the thrill of being genuinely remote and still get you a hot meal and a dry bed at the end of the day."
+                heading="Adventure and meaning, held in the same journey"
+                blurb="We design routes that preserve the thrill of being genuinely remote while keeping each day thoughtful, responsible and well paced."
                 maxWidth={520}
               />
             </Reveal>

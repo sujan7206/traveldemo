@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header.jsx";
 import Hero from "./components/Hero.jsx";
 import About from "./components/About.jsx";
-import Services from "./components/Services.jsx";
 import CtaBand, { FeatureSplit } from "./components/CtaBand.jsx";
 import WhyChooseUs from "./components/WhyChooseUs.jsx";
 import Trips from "./components/Trips.jsx";
 import Showcase from "./components/Showcase.jsx";
 import WhatWeDo from "./components/WhatWeDo.jsx";
 import VideoSection from "./components/VideoSection.jsx";
-import Pricing from "./components/Pricing.jsx";
 import Testimonials from "./components/Testimonials.jsx";
 import Blog from "./components/Blog.jsx";
 import Footer from "./components/Footer.jsx";
@@ -65,7 +63,6 @@ export default function App() {
       {data && (
         <>
           <About about={data.about} />
-          <Services services={data.services} />
           <CtaBand
             badge="Free"
             text="Tell us the landscape and the dates — a custom quote takes a day."
@@ -76,14 +73,13 @@ export default function App() {
           <Trips trips={data.trips} />
           <CtaBand
             badge="New"
-            text="Next season's departures are open for holds with no deposit."
+            text="Next season's guided journeys are now open for enquiries."
             cta="View All Trips"
           />
           <Showcase showcase={data.showcase} />
           <WhatWeDo whatWeDo={data.whatWeDo} />
           <VideoSection />
           <Partners />
-          <Pricing plans={data.plans} guarantees={data.guarantees} />
           <Testimonials
             testimonials={data.testimonials}
             reviewSummary={data.reviewSummary}

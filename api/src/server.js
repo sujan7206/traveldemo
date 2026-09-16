@@ -45,9 +45,9 @@ const services = [
 const journeyHighlights = [
   {
     id: "luxury-stays",
-    title: "Comfort in Remote Places",
+    title: "Local Expertise on Every Route",
     blurb:
-      "Real beds, hot water and proper coffee, three hours from the nearest town.",
+      "Travel with people who understand the terrain, weather and communities firsthand.",
   },
   {
     id: "low-impact",
@@ -68,15 +68,15 @@ const stats = [
 const reasons = [
   {
     id: "fireside",
-    title: "Fireside Evenings",
+    title: "Local Knowledge",
     blurb:
-      "Every site has a tended fire pit, and someone who knows the stories worth telling.",
+      "Every route is shaped with people who know the landscape and its stories firsthand.",
   },
   {
     id: "wild-luxury",
-    title: "Wild Without Rough",
+    title: "Responsible Routes",
     blurb:
-      "Linen sheets, hot showers and a kitchen run by someone who cooks for a living.",
+      "We choose quieter paths and local partners to reduce pressure on fragile places.",
   },
   {
     id: "small-groups",
@@ -102,7 +102,7 @@ const trips = [
     minAge: 10,
     priceUsd: 1240,
     excerpt:
-      "Two passes, one glacial lake and a night in a dome with the roof open.",
+      "Two high passes, one glacial lake and a sunrise trail above the valley.",
     image: "/images/nepal-mountain-village.jpg",
   },
   {
@@ -126,7 +126,7 @@ const trips = [
     minAge: 14,
     priceUsd: 960,
     excerpt:
-      "Sea cliffs, a wood-fired sauna and dinner cooked over driftwood.",
+      "Sea cliffs, quiet coastal paths and dinner cooked over an open fire.",
     image: "/images/mountain-lake.jpg",
   },
   {
@@ -150,15 +150,14 @@ const showcase = {
   happyGuests: 250,
   rating: 4.8,
   ratingScale: 5,
-  priceFrom: 35,
   image: "/images/valley-panorama.jpg",
   tags: [
-    "Luxury Glamping",
+    "Himalayan Routes",
     "Guided Trekking",
-    "Dark Sky Camps",
+    "Dark Sky Walks",
     "Wildlife Watching",
     "Coastal Retreats",
-    "Weekend Escapes",
+    "Short Guided Journeys",
   ],
 };
 
@@ -166,7 +165,7 @@ const whatWeDo = {
   image: "/images/alpine-ridge.jpg",
   checklist: [
     "Wilderness that still feels genuinely wild.",
-    "Comfort that never dulls the adventure.",
+    "Thoughtful pacing that never dulls the adventure.",
     "Weeks designed to be remembered, not survived.",
   ],
   cards: [
@@ -184,7 +183,7 @@ const whatWeDo = {
     {
       id: "eco",
       title: "Low-Impact Travel",
-      blurb: "Stays that leave the ground in better shape than we found it.",
+      blurb: "Journeys that leave each place in better shape than we found it.",
     },
   ],
 };
@@ -275,16 +274,16 @@ const posts = [
     id: "p1",
     category: "Sustainability",
     date: "2026-03-04",
-    title: "What low-impact camping actually costs to run",
+    title: "What low-impact travel actually takes",
     excerpt:
-      "A plain breakdown of solar, water recovery and waste on a remote site.",
+      "A plain breakdown of transport, water, waste and responsible remote travel.",
     image: "/images/wilderness-camp.jpg",
   },
   {
     id: "p2",
     category: "History",
     date: "2026-02-18",
-    title: "From army canvas to insulated domes",
+    title: "How mountain journeys became more accessible",
     excerpt: "How outdoor shelter got comfortable without getting heavier.",
     image: "/images/glamping-tent.jpg",
   },
@@ -294,7 +293,7 @@ const posts = [
     date: "2026-01-29",
     title: "Four days offline is the whole point",
     excerpt:
-      "Why we stopped apologising for the patchy signal at most of our camps.",
+      "Why we stopped apologising for patchy signal on our most remote routes.",
     image: "/images/mountain-lake.jpg",
   },
 ];
@@ -314,7 +313,7 @@ const about = {
   eyebrow: "About us",
   heading: "Wild places, planned properly, without the rough edges",
   blurb:
-    "We run a small number of sites and know each one in every season. That is the whole business model, and it is why the weeks work.",
+    "We run a small number of routes and know each one in every season. That is the whole business model, and it is why the journeys work.",
   yearsBadge: 12,
   badgeLabel: "Years guiding wild places",
   checklist: [

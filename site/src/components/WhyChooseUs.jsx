@@ -10,7 +10,7 @@ export default function WhyChooseUs({ reasons = [] }) {
         <Reveal>
           <SectionHead
             eyebrow="Why choose us"
-            heading="What makes a Verdway week different from a hotel week"
+            heading="What makes a Verdway journey feel genuinely different"
             blurb="We keep the operation small on purpose. Fewer sites, more time in each one, and guides who are not reading the landscape for the first time."
             align="center"
             maxWidth={720}
