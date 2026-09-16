@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 /**
  * Original layered-landscape artwork drawn in SVG.
@@ -20,7 +20,10 @@ export default function Scene({
   style,
   className,
   ratio = "4 / 3",
+  src,
+  alt = "Mountain landscape",
 }) {
+  const [failed, setFailed] = useState(false);
   const c = palettes[variant] ?? palettes.forest;
   const o = (seed % 5) * 14;
 
@@ -35,6 +38,15 @@ export default function Scene({
         ...style,
       }}
     >
+      {src && !failed ? (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          onError={() => setFailed(true)}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+      ) : (
       <svg
         viewBox="0 0 400 300"
         preserveAspectRatio="xMidYMid slice"
@@ -95,6 +107,7 @@ export default function Scene({
         />
         <rect y="282" width="400" height="18" fill={c[0]} />
       </svg>
+      )}
     </div>
   );
 }

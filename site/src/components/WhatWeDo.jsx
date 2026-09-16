@@ -38,7 +38,7 @@ export default function WhatWeDo({ whatWeDo }) {
           </div>
 
           <Reveal direction="right">
-            <Scene variant="lake" seed={4} ratio="4 / 3" style={{ borderRadius: 18 }} />
+            <Scene src={whatWeDo?.image} alt="Hikers crossing an alpine mountain ridge" variant="lake" seed={4} ratio="4 / 3" style={{ borderRadius: 18 }} />
           </Reveal>
         </div>
 

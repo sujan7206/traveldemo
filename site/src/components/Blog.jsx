@@ -47,6 +47,8 @@ export default function Blog({ posts = [] }) {
               >
                 <div style={{ position: "relative" }}>
                   <Scene
+                    src={post.image}
+                    alt={post.title}
                     className="card-media"
                     variant={variants[i % variants.length]}
                     seed={i + 1}

@@ -39,6 +39,8 @@ export default function Showcase({ showcase }) {
               }}
             >
               <Scene
+                src={showcase?.image}
+                alt="Wide mountain valley at golden hour"
                 className="card-media"
                 variant="dusk"
                 seed={2}

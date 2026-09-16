@@ -20,21 +20,25 @@ const services = [
     id: "forest-haven",
     title: "Forest Haven Domes",
     blurb: "Glass-fronted domes tucked into old cedar stands, warm all winter.",
+    image: "/images/forest-retreat.jpg",
   },
   {
     id: "riverbend",
     title: "Riverbend Canvas Suites",
     blurb: "Canvas suites on a slow river bend, with a private deck each.",
+    image: "/images/glamping-tent.jpg",
   },
   {
     id: "ridge-cabin",
     title: "Ridge Line Cabins",
     blurb: "Timber cabins above the treeline, built for long cold sunrises.",
+    image: "/images/snow-mountain.jpg",
   },
   {
     id: "lakeside",
     title: "Lakeside Retreats",
     blurb: "Water's-edge lodges with a wood-fired sauna and a rowboat.",
+    image: "/images/alpine-lake.jpg",
   },
 ];
 
@@ -99,6 +103,7 @@ const trips = [
     priceUsd: 1240,
     excerpt:
       "Two passes, one glacial lake and a night in a dome with the roof open.",
+    image: "/images/nepal-mountain-village.jpg",
   },
   {
     id: "salt-flats",
@@ -110,6 +115,7 @@ const trips = [
     priceUsd: 1890,
     excerpt:
       "Mirror-flat horizons by day, one of the darkest night skies on record after.",
+    image: "/images/himalayan-peaks.jpg",
   },
   {
     id: "monsoon-coast",
@@ -121,6 +127,7 @@ const trips = [
     priceUsd: 960,
     excerpt:
       "Sea cliffs, a wood-fired sauna and dinner cooked over driftwood.",
+    image: "/images/mountain-lake.jpg",
   },
   {
     id: "riverlands",
@@ -132,6 +139,7 @@ const trips = [
     priceUsd: 1385,
     excerpt:
       "Dawn paddles through flooded forest with a naturalist reading the banks.",
+    image: "/images/forest-retreat.jpg",
   },
 ];
 
@@ -143,6 +151,7 @@ const showcase = {
   rating: 4.8,
   ratingScale: 5,
   priceFrom: 35,
+  image: "/images/valley-panorama.jpg",
   tags: [
     "Luxury Glamping",
     "Guided Trekking",
@@ -154,6 +163,7 @@ const showcase = {
 };
 
 const whatWeDo = {
+  image: "/images/alpine-ridge.jpg",
   checklist: [
     "Wilderness that still feels genuinely wild.",
     "Comfort that never dulls the adventure.",
@@ -268,6 +278,7 @@ const posts = [
     title: "What low-impact camping actually costs to run",
     excerpt:
       "A plain breakdown of solar, water recovery and waste on a remote site.",
+    image: "/images/wilderness-camp.jpg",
   },
   {
     id: "p2",
@@ -275,6 +286,7 @@ const posts = [
     date: "2026-02-18",
     title: "From army canvas to insulated domes",
     excerpt: "How outdoor shelter got comfortable without getting heavier.",
+    image: "/images/glamping-tent.jpg",
   },
   {
     id: "p3",
@@ -283,6 +295,7 @@ const posts = [
     title: "Four days offline is the whole point",
     excerpt:
       "Why we stopped apologising for the patchy signal at most of our camps.",
+    image: "/images/mountain-lake.jpg",
   },
 ];
 
@@ -303,13 +316,15 @@ const about = {
   blurb:
     "We run a small number of sites and know each one in every season. That is the whole business model, and it is why the weeks work.",
   yearsBadge: 12,
-  badgeLabel: "Seasons guiding in the backcountry",
+  badgeLabel: "Years guiding wild places",
   checklist: [
     "Itineraries shaped around your pace",
     "Guides who live where they lead",
     "Escapes that hold up years later",
   ],
   quote: "Go far. Sleep well. Leave nothing.",
+  image: "/images/nepal-mountain-village.jpg",
+  secondaryImage: "/images/alpine-lake.jpg",
 };
 
 app.get("/api/health", (_req, res) => {

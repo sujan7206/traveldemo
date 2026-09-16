@@ -86,7 +86,12 @@ export default function Hero() {
           overflow: "hidden",
         }}
       >
-        <HeroArt />
+        <img
+          src="/images/nepal-himalaya-hero.jpg"
+          alt="Himalayan peaks in Nepal at sunrise"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(8,24,19,0.84) 0%, rgba(8,24,19,0.56) 52%, rgba(8,24,19,0.24) 100%)" }} />
 
         <div style={{ ...shell, position: "relative", zIndex: 2 }}>
           <div style={{ display: "grid", gap: 24, maxWidth: 760 }}>

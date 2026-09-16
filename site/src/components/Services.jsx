@@ -39,6 +39,8 @@ export default function Services({ services = [] }) {
                 }}
               >
                 <Scene
+                  src={service.image}
+                  alt={service.title}
                   className="card-media"
                   variant={sceneVariants[i % sceneVariants.length]}
                   seed={i + 2}

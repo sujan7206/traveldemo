@@ -20,7 +20,7 @@ export default function About({ about }) {
         {/* image collage + counter badge */}
         <Reveal direction="left">
           <div style={{ position: "relative", paddingBottom: 56, paddingRight: 48 }}>
-            <Scene variant="forest" seed={1} ratio="5 / 4" style={{ borderRadius: 18 }} />
+            <Scene src={about?.image} alt="Mountain village beneath the Himalayas" variant="forest" seed={1} ratio="5 / 4" style={{ borderRadius: 18 }} />
             <div
               style={{
                 position: "absolute",
@@ -32,7 +32,7 @@ export default function About({ about }) {
                 overflow: "hidden",
               }}
             >
-              <Scene variant="amber" seed={3} ratio="4 / 3" />
+              <Scene src={about?.secondaryImage} alt="Clear alpine lake and mountain ridge" variant="amber" seed={3} ratio="4 / 3" />
             </div>
             <div
               ref={counter.ref}

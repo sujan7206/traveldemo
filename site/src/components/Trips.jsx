@@ -50,6 +50,8 @@ export default function Trips({ trips = [] }) {
               >
                 <div style={{ position: "relative" }}>
                   <Scene
+                    src={trip.image}
+                    alt={`${trip.name}, ${trip.location}`}
                     className="card-media"
                     variant={variants[i % variants.length]}
                     seed={i + 4}

@@ -50,7 +50,13 @@ export default function VideoSection() {
               placeItems: "center",
             }}
           >
-            <VideoArt />
+            <img
+              src="/images/valley-panorama.jpg"
+              alt="A broad green valley surrounded by mountain peaks"
+              loading="lazy"
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+            />
+            <div style={{ position: "absolute", inset: 0, background: "rgba(10,22,18,0.42)" }} />
             <button
               className="play-btn"
               onClick={() => setOpen(true)}
