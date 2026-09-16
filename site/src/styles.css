@@ -1,0 +1,40 @@
+:root {
+  --ink: #12211f;
+  --ink-soft: #4d635f;
+  --line: #dfe7e4;
+  --surface: #ffffff;
+  --canvas: #f5f8f6;
+  --accent: #0f766e;
+  --accent-ink: #ffffff;
+  --warm: #c2410c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.card-link:hover {
+  border-color: var(--accent);
+}
+
+.primary-button:hover {
+  background: #0b5d57;
+}

@@ -1,0 +1,25 @@
+services:
+  api:
+    image: node:22-bookworm
+    working_dir: /workspace
+    network_mode: host
+    volumes:
+      - .:/workspace
+    environment:
+      IS_ALLOY: ${IS_ALLOY:-false}
+      API_PORT: 3001
+    command: bash -lc "cd api && npm install && npm run dev"
+
+  site:
+    image: node:22-bookworm
+    working_dir: /workspace
+    network_mode: host
+    volumes:
+      - .:/workspace
+    depends_on:
+      - api
+    environment:
+      IS_ALLOY: ${IS_ALLOY:-false}
+      SITE_PORT: 3000
+      API_PORT: 3001
+    command: bash -lc "cd site && npm install && npm run dev"
