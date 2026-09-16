@@ -1,5 +1,5 @@
 import React from "react";
-import { shell, Button, Eyebrow, Glyph, Reveal } from "./ui.jsx";
+import { shell, AnimatedHeading, Button, Eyebrow, Glyph, Reveal } from "./ui.jsx";
 
 function HeroArt() {
   return (
@@ -99,14 +99,14 @@ export default function Hero() {
               <Eyebrow tone="light">Welcome to Verdway</Eyebrow>
             </Reveal>
             <Reveal delay={120}>
-              <h1
+              <AnimatedHeading
+                as="h1"
+                variant="back"
                 style={{
                   fontSize: "clamp(38px, 5.6vw, 72px)",
                   color: "#fff",
                 }}
-              >
-                Sleep in wild places without giving up the good bed
-              </h1>
+              >Sleep in wild places without giving up the good bed</AnimatedHeading>
             </Reveal>
             <Reveal delay={220}>
               <p

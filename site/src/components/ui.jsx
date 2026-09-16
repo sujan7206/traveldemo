@@ -21,6 +21,28 @@ export function Reveal({ direction = "up", delay = 0, style, children, as: As = 
   );
 }
 
+export function AnimatedHeading({ children, as: As = "h2", variant = "chars", style }) {
+  const r = useReveal();
+  const text = String(children ?? "");
+  const words = text.split(" ");
+  return (
+    <As ref={r.ref} className={`${r.className} split-heading split-${variant}`} style={{ ...r.style, ...style }} aria-label={text}>
+      {words.map((word, wordIndex) => (
+        <span className="split-word" aria-hidden="true" key={`${word}-${wordIndex}`}>
+          {variant === "words" ? (
+            <span className="split-unit" style={{ "--split-index": wordIndex }}>{word}</span>
+          ) : (
+            [...word].map((character, charIndex) => {
+              const previous = words.slice(0, wordIndex).reduce((sum, item) => sum + item.length, 0);
+              return <span className="split-unit" style={{ "--split-index": previous + charIndex }} key={`${character}-${charIndex}`}>{character}</span>;
+            })
+          )}
+        </span>
+      ))}
+    </As>
+  );
+}
+
 export function Eyebrow({ children, tone = "accent" }) {
   return (
     <span
@@ -59,14 +81,13 @@ export function SectionHead({
       }}
     >
       {eyebrow && <Eyebrow tone={light ? "light" : "accent"}>{eyebrow}</Eyebrow>}
-      <h2
+      <AnimatedHeading
+        variant="chars"
         style={{
           fontSize: "clamp(28px, 3.4vw, 42px)",
           color: light ? "#fff" : "var(--ink)",
         }}
-      >
-        {heading}
-      </h2>
+      >{heading}</AnimatedHeading>
       {blurb && (
         <p
           style={{
@@ -122,9 +143,9 @@ export function Button({ children, variant = "solid", style, ...rest }) {
   };
   const v = variants[variant] ?? variants.solid;
   return (
-    <button className={v.className} style={{ ...baseBtn, ...v.style, ...style }} {...rest}>
-      {children}
-      <span aria-hidden="true">&rarr;</span>
+    <button className={`${v.className} motion-button`} style={{ ...baseBtn, ...v.style, ...style }} {...rest}>
+      <span>{children}</span>
+      <span className="arrow-window" aria-hidden="true"><span>→</span><span>→</span></span>
     </button>
   );
 }

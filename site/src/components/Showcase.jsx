@@ -1,6 +1,6 @@
 import React from "react";
 import Scene from "./Scene.jsx";
-import { shell, Button, Eyebrow, Reveal, Stars } from "./ui.jsx";
+import { shell, AnimatedHeading, Button, Eyebrow, Reveal, Stars } from "./ui.jsx";
 import { useCountUp } from "../hooks/useMotion.js";
 
 export default function Showcase({ showcase }) {
@@ -12,9 +12,9 @@ export default function Showcase({ showcase }) {
         <Reveal>
           <div style={{ display: "grid", gap: 12, maxWidth: 680 }}>
             <Eyebrow>Our feature</Eyebrow>
-            <h2 style={{ fontSize: "clamp(28px, 3.4vw, 42px)" }}>
+            <AnimatedHeading variant="back" style={{ fontSize: "clamp(28px, 3.4vw, 42px)" }}>
               {showcase?.heading}
-            </h2>
+            </AnimatedHeading>
           </div>
         </Reveal>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { shell, Reveal } from "./ui.jsx";
+import { AnimatedHeading, shell, Reveal } from "./ui.jsx";
 import { useCountUp } from "../hooks/useMotion.js";
 
 function StatItem({ stat, index }) {
@@ -34,16 +34,15 @@ export default function Stats({ stats = [] }) {
     <section style={{ background: "var(--forest-deep)", padding: "72px 0" }}>
       <div style={{ ...shell, display: "grid", gap: 36 }}>
         <Reveal>
-          <h2
+          <AnimatedHeading
+            variant="words"
             className="display"
             style={{
               textAlign: "center",
               fontSize: "clamp(24px, 2.6vw, 32px)",
               color: "#fff",
             }}
-          >
-            Our seasons, counted up
-          </h2>
+          >Our seasons, counted up</AnimatedHeading>
         </Reveal>
         <Reveal delay={120}>
           <div

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { shell, Reveal, SectionHead } from "./ui.jsx";
 
 function VideoArt() {
@@ -26,6 +26,17 @@ function VideoArt() {
 
 export default function VideoSection() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const close = (event) => event.key === "Escape" && setOpen(false);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", close);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", close);
+    };
+  }, [open]);
 
   return (
     <section style={{ background: "#fff", padding: "96px 0" }}>
@@ -99,6 +110,7 @@ export default function VideoSection() {
           }}
         >
           <div
+            onClick={(event) => event.stopPropagation()}
             style={{
               width: "min(960px, 100%)",
               aspectRatio: "16 / 9",
@@ -110,7 +122,13 @@ export default function VideoSection() {
               fontSize: 15,
             }}
           >
-            Film player placeholder — drop an embed URL here.
+            <iframe
+              title="Verdway mountain journey"
+              src="https://www.youtube-nocookie.com/embed/LXb3EKWsInQ?autoplay=1&rel=0"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+              style={{ width: "100%", height: "100%", border: 0, borderRadius: 14 }}
+            />
           </div>
           <button
             onClick={() => setOpen(false)}

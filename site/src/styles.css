@@ -24,6 +24,93 @@ body {
   padding: 0;
 }
 
+body,
+a,
+button {
+  cursor: none;
+}
+
+/* ---------- preloader and cursor ---------- */
+.site-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  background: var(--forest-deep);
+  color: #fff;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.site-preloader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-mark {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--accent);
+  border: 1px solid rgba(255,255,255,0.28);
+  font-size: 27px;
+  animation: preloader-turn 1.6s linear infinite;
+}
+.preloader-name { font-size: 24px; }
+.preloader-line {
+  width: 110px;
+  height: 2px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.14);
+}
+.preloader-line::after {
+  content: "";
+  display: block;
+  width: 45%;
+  height: 100%;
+  background: var(--accent);
+  animation: preloader-line 1.1s ease-in-out infinite alternate;
+}
+@keyframes preloader-turn { to { transform: rotate(360deg); } }
+@keyframes preloader-line { from { transform: translateX(-100%); } to { transform: translateX(225%); } }
+
+.magic-cursor,
+.magic-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  pointer-events: none;
+  border-radius: 50%;
+  will-change: transform;
+  opacity: 0;
+}
+.magic-cursor.has-moved, .magic-cursor-dot.has-moved { opacity: 1; }
+.magic-cursor {
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+  border: 1px solid rgba(200,134,42,0.75);
+  transition: width .25s ease, height .25s ease, margin .25s ease, background-color .25s ease;
+}
+.magic-cursor.is-active {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background: rgba(200,134,42,0.12);
+}
+.magic-cursor-dot {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  background: var(--accent);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -93,6 +180,58 @@ button {
   clip-path: inset(0 0 0 0);
 }
 
+/* ---------- split-text motion ---------- */
+.split-heading {
+  display: block;
+  overflow: visible;
+}
+.split-word {
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: 0.25em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.split-word:last-child { margin-right: 0; }
+.split-unit {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(20px, 0, 0);
+  transition:
+    opacity 1s var(--reveal-ease),
+    transform 1s var(--reveal-ease);
+  transition-delay: calc(0.1s + var(--split-index) * 0.03s);
+}
+.split-words .split-unit {
+  transition-delay: calc(0.5s + var(--split-index) * 0.05s);
+}
+.split-back .split-unit {
+  transform: translate3d(50px, 0, 0) rotateX(-28deg);
+  transition-delay: calc(var(--split-index) * 0.02s);
+  transition-timing-function: cubic-bezier(.34,1.56,.64,1);
+}
+.split-heading.is-visible .split-unit {
+  opacity: 1;
+  transform: translate3d(0,0,0) rotateX(0);
+}
+
+/* ---------- image wipe and distortion ---------- */
+.image-wipe {
+  clip-path: inset(0 100% 0 0) !important;
+  opacity: 1 !important;
+  transition: clip-path 1.5s cubic-bezier(.22,.61,.36,1) !important;
+}
+.image-wipe.is-visible { clip-path: inset(0 0 0 0) !important; }
+.media-distort img {
+  transition: transform 1.2s cubic-bezier(.16,1,.3,1), filter 1.2s ease;
+  transform-origin: center;
+}
+.card:hover .media-distort img,
+.media-distort:hover img {
+  transform: scale(1.06) skewX(-0.8deg);
+  filter: saturate(1.18) contrast(1.04);
+}
+
 /* ---------- hero zoom ---------- */
 @keyframes slow-zoom {
   from {
@@ -113,6 +252,24 @@ button {
     background-color 0.25s ease,
     color 0.25s ease;
 }
+.motion-button { overflow: hidden; }
+.arrow-window {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 20px;
+  overflow: hidden;
+}
+.arrow-window > span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition: transform .35s var(--reveal-ease), opacity .35s ease;
+}
+.arrow-window > span:last-child { transform: translate(-18px,18px); opacity: 0; }
+.motion-button:hover .arrow-window > span:first-child { transform: translate(18px,-18px); opacity: 0; }
+.motion-button:hover .arrow-window > span:last-child { transform: translate(0,0); opacity: 1; }
 .btn-solid:hover {
   background-color: var(--forest-deep) !important;
 }
@@ -190,6 +347,8 @@ button {
 .link-arrow:hover {
   color: var(--accent);
 }
+.link-arrow span { display: inline-block; transition: transform .3s var(--reveal-ease); }
+.link-arrow:hover span { transform: translateX(6px); }
 
 .dot {
   transition:
@@ -200,6 +359,30 @@ button {
 .play-btn {
   transition: background-color 0.25s ease;
 }
+
+/* ---------- continuously moving details ---------- */
+.cta-flow-arrow {
+  display: inline-block;
+  margin-left: 4px;
+  animation: cta-arrow 1.25s ease-in-out infinite;
+}
+@keyframes cta-arrow { 0%,100% { transform: translateX(0); opacity: .45; } 50% { transform: translateX(9px); opacity: 1; } }
+.partner-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: partner-marquee 24s linear infinite;
+}
+.partner-logo {
+  width: 240px;
+  flex: 0 0 240px;
+  text-align: center;
+  color: #66766f;
+  font-size: 16px;
+  letter-spacing: .05em;
+}
+.partner-logo i { color: var(--accent); font-style: normal; margin-right: 8px; }
+@keyframes partner-marquee { to { transform: translateX(-50%); } }
 .play-btn:hover {
   background-color: var(--accent);
 }
@@ -226,13 +409,23 @@ button {
     transition: none;
   }
   .hero-bg,
-  .play-btn {
+  .play-btn,
+  .partner-track,
+  .cta-flow-arrow,
+  .preloader-mark,
+  .preloader-line::after {
     animation: none;
   }
+  .split-unit { opacity: 1; transform: none; transition: none; }
+  .image-wipe { clip-path: none !important; transition: none !important; }
+  .media-distort img { transform: none !important; transition: none; }
+  .magic-cursor, .magic-cursor-dot { display: none; }
 }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1080px) {
+  body, a, button { cursor: auto; }
+  .magic-cursor, .magic-cursor-dot { display: none; }
   .desktop-nav {
     display: none !important;
   }

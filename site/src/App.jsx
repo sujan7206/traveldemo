@@ -14,6 +14,8 @@ import Pricing from "./components/Pricing.jsx";
 import Testimonials from "./components/Testimonials.jsx";
 import Blog from "./components/Blog.jsx";
 import Footer from "./components/Footer.jsx";
+import MotionLayer from "./components/MotionLayer.jsx";
+import Partners from "./components/Partners.jsx";
 
 export default function App() {
   const [data, setData] = useState(null);
@@ -58,6 +60,7 @@ export default function App() {
 
   return (
     <>
+      <MotionLayer />
       <Header />
       <Hero />
       {data && (
@@ -81,6 +84,7 @@ export default function App() {
           <Showcase showcase={data.showcase} />
           <WhatWeDo whatWeDo={data.whatWeDo} />
           <VideoSection />
+          <Partners />
           <Pricing plans={data.plans} guarantees={data.guarantees} />
           <Testimonials
             testimonials={data.testimonials}

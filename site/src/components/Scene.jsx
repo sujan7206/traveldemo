@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { prefersReduced } from "../hooks/useMotion.js";
 
 /**
  * Original layered-landscape artwork drawn in SVG.
@@ -24,12 +25,34 @@ export default function Scene({
   alt = "Mountain landscape",
 }) {
   const [failed, setFailed] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
   const c = palettes[variant] ?? palettes.forest;
   const o = (seed % 5) * 14;
 
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || prefersReduced()) {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+    );
+    observer.observe(node.parentElement ?? node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
-      className={className}
+      ref={ref}
+      className={`${className ?? ""} image-wipe media-distort${visible ? " is-visible" : ""}`}
       style={{
         aspectRatio: ratio,
         width: "100%",
@@ -44,6 +67,7 @@ export default function Scene({
           alt={alt}
           loading="lazy"
           onError={() => setFailed(true)}
+          className="distort-base"
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       ) : (

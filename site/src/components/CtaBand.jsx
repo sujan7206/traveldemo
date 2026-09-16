@@ -1,5 +1,5 @@
 import React from "react";
-import { shell, Button, Eyebrow, Reveal } from "./ui.jsx";
+import { shell, AnimatedHeading, Button, Eyebrow, Reveal } from "./ui.jsx";
 
 export default function CtaBand({ badge = "Free", text, cta = "View All Trips" }) {
   return (
@@ -30,7 +30,7 @@ export default function CtaBand({ badge = "Free", text, cta = "View All Trips" }
               >
                 {badge}
               </span>
-              <p style={{ fontSize: 17, color: "rgba(255,255,255,0.9)" }}>{text}</p>
+              <p style={{ fontSize: 17, color: "rgba(255,255,255,0.9)" }}>{text} <span className="cta-flow-arrow" aria-hidden="true">→</span></p>
             </div>
             <Button variant="ghostLight" style={{ padding: "11px 20px" }}>
               {cta}
@@ -59,9 +59,9 @@ export function FeatureSplit({ highlights = [] }) {
             <Eyebrow>Your escape</Eyebrow>
           </Reveal>
           <Reveal direction="left" delay={100}>
-            <h2 style={{ fontSize: "clamp(28px, 3.4vw, 42px)" }}>
+            <AnimatedHeading variant="words" style={{ fontSize: "clamp(28px, 3.4vw, 42px)" }}>
               Step off the road and start a week that is actually yours
-            </h2>
+            </AnimatedHeading>
           </Reveal>
           <Reveal direction="left" delay={180}>
             <p style={{ fontSize: 17, color: "var(--ink-soft)" }}>
