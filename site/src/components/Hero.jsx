@@ -6,8 +6,8 @@ export default function Hero() {
     <section id="top" className="editorial-hero">
       <img
         className="editorial-hero-image"
-        src="/images/valley-panorama.jpg"
-        alt="Turquoise mountain lake surrounded by alpine peaks"
+        src="/images/nepal-himalaya-hero.jpg"
+        alt="Snow-covered Himalayan peaks and prayer flags in Nepal"
       />
       <div className="editorial-hero-veil" />
 
@@ -20,25 +20,23 @@ export default function Hero() {
             </div>
           </Reveal>
 
-          <h1 className="editorial-hero-title" aria-label="Discover a Higher You">
-            <AnimatedHeading as="span" variant="back">
-              Discover
-            </AnimatedHeading>
+          <h1 className="editorial-hero-title" aria-label="Higher Trails, Deeper Stories">
+            <AnimatedHeading as="span" variant="back">Higher Trails,</AnimatedHeading>
             <span className="hero-title-second-line">
-              <AnimatedHeading as="span" variant="words">a Higher</AnimatedHeading>{" "}
-              <Reveal as="span" delay={700}><em>You</em></Reveal>
+              <Reveal as="span" delay={560}><em>Deeper</em></Reveal>{" "}
+              <AnimatedHeading as="span" variant="words">Stories</AnimatedHeading>
             </span>
           </h1>
 
           <Reveal delay={420}>
             <p className="editorial-hero-subtitle">
-              Majestic mountains. Timeless cultures.<br />
-              Extraordinary journeys through Nepal.
+              Authentic journeys through Nepal’s mountains,<br />
+              cultures, and timeless landscapes.
             </p>
           </Reveal>
 
           <Reveal delay={560}>
-            <Button variant="solid" className="reference-gradient-button" style={{ marginTop: 8 }}>
+            <Button variant="solid" className="hero-explore-button" style={{ marginTop: 8 }}>
               Explore Nepal
             </Button>
           </Reveal>

@@ -6,7 +6,8 @@ import { useScrolled } from "../hooks/useMotion.js";
 const nav = [
   { label: "Destinations", children: ["Himalayas", "Kathmandu Valley", "Pokhara", "Terai"] },
   { label: "Experiences", children: ["Trekking", "Culture", "Wildlife", "Wellness"] },
-  { label: "About Nepal" },
+  { label: "Trekking", children: ["Everest Region", "Annapurna Region", "Langtang Region"] },
+  { label: "About Nepal", children: ["Culture", "Regions", "Travel Guide"] },
   { label: "Trip Planner" },
   { label: "Contact" },
 ];
@@ -98,9 +99,9 @@ export default function Header() {
         left: 0,
         right: 0,
         zIndex: 80,
-        background: scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.08)",
-        borderBottom: `1px solid ${scrolled ? "var(--line)" : "rgba(18,33,28,0.08)"}`,
-        backdropFilter: scrolled ? "blur(10px)" : "none",
+        background: "rgba(255,255,255,0.97)",
+        borderBottom: "1px solid rgba(18,33,28,0.08)",
+        backdropFilter: "blur(10px)",
         transition: "background-color 0.35s ease, border-color 0.35s ease",
       }}
     >
@@ -112,7 +113,7 @@ export default function Header() {
           alignItems: "center",
           justifyContent: "space-between",
           gap: 24,
-          height: scrolled ? 72 : 104,
+          height: scrolled ? 72 : 90,
           transition: "height 0.35s ease",
         }}
       >
@@ -187,7 +188,7 @@ export default function Header() {
           </button>
 
           <div className="header-cta">
-            <Button variant="solid" className="reference-gradient-button" style={{ padding: "13px 26px" }}>Plan a Trip</Button>
+            <Button variant="solid" className="header-plan-button" style={{ padding: "13px 28px" }}>Plan a Trip</Button>
           </div>
 
           <button
