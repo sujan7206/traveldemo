@@ -4,7 +4,6 @@ import Hero from "./components/Hero.jsx";
 import About from "./components/About.jsx";
 import Services from "./components/Services.jsx";
 import CtaBand, { FeatureSplit } from "./components/CtaBand.jsx";
-import Stats from "./components/Stats.jsx";
 import WhyChooseUs from "./components/WhyChooseUs.jsx";
 import Trips from "./components/Trips.jsx";
 import Showcase from "./components/Showcase.jsx";
@@ -73,7 +72,6 @@ export default function App() {
             cta="Request a Quote"
           />
           <FeatureSplit highlights={data.journeyHighlights} />
-          <Stats stats={data.stats} />
           <WhyChooseUs reasons={data.reasons} />
           <Trips trips={data.trips} />
           <CtaBand
