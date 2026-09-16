@@ -4,15 +4,12 @@ import { Button } from "./ui.jsx";
 import { useScrolled } from "../hooks/useMotion.js";
 
 const nav = [
+  { label: "Destinations", children: ["Himalayas", "Kathmandu Valley", "Pokhara", "Terai"] },
+  { label: "Experiences", children: ["Trekking", "Culture", "Wildlife", "Wellness"] },
+  { label: "About Nepal" },
+  { label: "Trip Planner" },
   {
-    label: "Home",
-    children: ["Version One", "Version Two", "Version Three"],
-  },
-  { label: "About" },
-  { label: "Stays" },
-  { label: "Journal" },
-  {
-    label: "Pages",
+    label: "More",
     children: [
       "Stay Details",
       "Journal Entry",
@@ -92,30 +89,16 @@ function Logo({ light }) {
       style={{ display: "flex", alignItems: "center", gap: 10 }}
       aria-label="Verdway home"
     >
-      <span
-        style={{
-          width: 34,
-          height: 34,
-          borderRadius: 10,
-          background: "var(--accent)",
-          display: "grid",
-          placeItems: "center",
-        }}
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 20 L12 5 L20 20 Z" fill="none" stroke="#fff" strokeWidth="1.8" />
+      <span className="mountain-logo" style={{ color: "var(--forest-deep)" }}>
+        <svg width="48" height="30" viewBox="0 0 60 36" fill="none" aria-hidden="true">
+          <path d="M2 31 19 12l7 8L37 3l21 28" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
+          <path d="m31 12 6-9 7 10-5-3-3 5-2-5-3 2Z" fill="currentColor" />
         </svg>
+        <span>
+          <strong className="display">Verd<span>way</span></strong>
+          <small>MORE THAN A JOURNEY</small>
+        </span>
       </span>
-      <strong
-        className="display"
-        style={{
-          fontSize: 21,
-          color: light ? "#fff" : "var(--ink)",
-          letterSpacing: "-0.01em",
-        }}
-      >
-        Verdway
-      </strong>
     </a>
   );
 }
@@ -123,7 +106,7 @@ function Logo({ light }) {
 export default function Header() {
   const scrolled = useScrolled(70);
   const [open, setOpen] = useState(false);
-  const light = !scrolled;
+  const light = false;
 
   return (
     <header
@@ -133,8 +116,8 @@ export default function Header() {
         left: 0,
         right: 0,
         zIndex: 80,
-        background: scrolled ? "rgba(255,255,255,0.97)" : "transparent",
-        borderBottom: `1px solid ${scrolled ? "var(--line)" : "rgba(255,255,255,0.18)"}`,
+        background: scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.08)",
+        borderBottom: `1px solid ${scrolled ? "var(--line)" : "rgba(18,33,28,0.08)"}`,
         backdropFilter: scrolled ? "blur(10px)" : "none",
         transition: "background-color 0.35s ease, border-color 0.35s ease",
       }}
@@ -142,11 +125,12 @@ export default function Header() {
       <div
         style={{
           ...shell,
+          maxWidth: 1640,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           gap: 24,
-          height: scrolled ? 70 : 88,
+          height: scrolled ? 72 : 104,
           transition: "height 0.35s ease",
         }}
       >
@@ -216,8 +200,8 @@ export default function Header() {
           </button>
 
           <div className="header-cta">
-            <Button variant="accent" style={{ padding: "12px 22px" }}>
-              Plan a Trip
+              <Button variant="solid" style={{ padding: "13px 24px", border: "1px solid var(--accent)" }}>
+                Plan a Trip
             </Button>
           </div>
 
