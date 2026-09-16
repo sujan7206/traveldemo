@@ -24,13 +24,7 @@ body {
   padding: 0;
 }
 
-body,
-a,
-button {
-  cursor: none;
-}
-
-/* ---------- preloader and cursor ---------- */
+/* ---------- preloader ---------- */
 .site-preloader {
   position: fixed;
   inset: 0;
@@ -79,40 +73,13 @@ button {
 @keyframes preloader-turn { to { transform: rotate(360deg); } }
 @keyframes preloader-line { from { transform: translateX(-100%); } to { transform: translateX(225%); } }
 
-.magic-cursor,
-.magic-cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 998;
-  pointer-events: none;
-  border-radius: 50%;
-  will-change: transform;
-  opacity: 0;
-}
-.magic-cursor.has-moved, .magic-cursor-dot.has-moved { opacity: 1; }
-.magic-cursor {
-  width: 42px;
-  height: 42px;
-  margin: -21px 0 0 -21px;
-  border: 1px solid rgba(200,134,42,0.75);
-  transition: width .25s ease, height .25s ease, margin .25s ease, background-color .25s ease;
-}
-.magic-cursor.is-active {
-  width: 64px;
-  height: 64px;
-  margin: -32px 0 0 -32px;
-  background: rgba(200,134,42,0.12);
-}
-.magic-cursor-dot {
-  width: 5px;
-  height: 5px;
-  margin: -2.5px 0 0 -2.5px;
-  background: var(--accent);
-}
 
 html {
   scroll-behavior: smooth;
+}
+
+html.smooth-wheel {
+  scroll-behavior: auto;
 }
 
 body {
@@ -419,13 +386,10 @@ button {
   .split-unit { opacity: 1; transform: none; transition: none; }
   .image-wipe { clip-path: none !important; transition: none !important; }
   .media-distort img { transform: none !important; transition: none; }
-  .magic-cursor, .magic-cursor-dot { display: none; }
 }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1080px) {
-  body, a, button { cursor: auto; }
-  .magic-cursor, .magic-cursor-dot { display: none; }
   .desktop-nav {
     display: none !important;
   }
