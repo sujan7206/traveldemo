@@ -6,7 +6,7 @@ export default function Hero() {
     <section id="top" className="editorial-hero">
       <img
         className="editorial-hero-image"
-        src="/images/nepal-himalaya-hero.jpg"
+        src="/images/nepal-himalaya-hero-hq.jpg"
         alt="Snow-covered Himalayan peaks and prayer flags in Nepal"
       />
       <div className="editorial-hero-veil" />
