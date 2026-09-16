@@ -11,7 +11,7 @@ export default function Hero() {
       />
       <div className="editorial-hero-veil" />
 
-      <div className="editorial-hero-shell" style={{ ...shell, maxWidth: 1640 }}>
+      <div className="editorial-hero-shell" style={{ ...shell, maxWidth: 1500 }}>
         <div className="editorial-hero-copy">
           <Reveal>
             <div className="hero-kicker">
@@ -38,23 +38,11 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={560}>
-            <Button variant="solid" style={{ marginTop: 8 }}>
+            <Button variant="solid" className="reference-gradient-button" style={{ marginTop: 8 }}>
               Explore Nepal
             </Button>
           </Reveal>
         </div>
-
-        <Reveal delay={760} style={{ width: "100%" }}>
-          <div className="hero-bottom-meta">
-            <span className="hero-journey-label"><i /> Journeys that stay with you</span>
-            <span className="hero-location">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 10.2A3.2 3.2 0 1 1 12 5.8a3.2 3.2 0 0 1 0 6.4Z" />
-              </svg>
-              Alpine Lake, Nepal
-            </span>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

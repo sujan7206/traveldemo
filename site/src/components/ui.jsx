@@ -114,7 +114,7 @@ const baseBtn = {
   border: "1px solid transparent",
 };
 
-export function Button({ children, variant = "solid", style, ...rest }) {
+export function Button({ children, variant = "solid", style, className = "", ...rest }) {
   const variants = {
     solid: {
       className: "btn-solid",
@@ -143,7 +143,7 @@ export function Button({ children, variant = "solid", style, ...rest }) {
   };
   const v = variants[variant] ?? variants.solid;
   return (
-    <button className={`${v.className} motion-button`} style={{ ...baseBtn, ...v.style, ...style }} {...rest}>
+    <button className={`${v.className} motion-button ${className}`.trim()} style={{ ...baseBtn, ...v.style, ...style }} {...rest}>
       <span>{children}</span>
       <span className="arrow-window" aria-hidden="true"><span>→</span><span>→</span></span>
     </button>

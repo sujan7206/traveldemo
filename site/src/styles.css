@@ -213,13 +213,13 @@ button {
   padding-bottom: 34px !important;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .editorial-hero-copy {
   display: grid;
   gap: 20px;
   max-width: 670px;
-  margin-top: 5vh;
+  margin-top: 11vh;
 }
 .hero-kicker {
   display: flex;
@@ -255,21 +255,27 @@ button {
   line-height: 1.45;
   color: #354840;
 }
-.hero-bottom-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  text-shadow: 0 1px 12px rgba(0,0,0,.35);
-}
-.hero-journey-label, .hero-location { display: flex; align-items: center; gap: 12px; }
-.hero-journey-label i { width: 38px; height: 1px; background: currentColor; }
 @keyframes hero-breathe { from { transform: scale(1); } to { transform: scale(1.035); } }
+
+.reference-gradient-button {
+  background: linear-gradient(105deg, #0879bd 0%, #70b832 100%) !important;
+  border: 1px solid rgba(255,255,255,.9) !important;
+  color: #fff !important;
+}
+.reference-gradient-button:hover {
+  background: linear-gradient(105deg, #086aa4 0%, #5ba028 100%) !important;
+}
+.header-divider { width: 1px; height: 28px; background: rgba(18,33,28,.18); }
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--forest-deep);
+  font-size: 14px;
+  cursor: pointer;
+}
 
 .mountain-logo {
   display: flex;
@@ -521,11 +527,10 @@ button {
     padding-top: 132px !important;
     padding-bottom: 24px !important;
   }
-  .editorial-hero-copy { margin-top: 5vh; max-width: 355px; }
+  .editorial-hero-copy { margin-top: 7vh; max-width: 355px; }
   .editorial-hero-title { font-size: clamp(48px, 15vw, 64px); }
   .hero-title-second-line { white-space: normal; flex-wrap: wrap; gap: 0 .16em; }
-  .hero-bottom-meta { align-items: flex-end; font-size: 9px; letter-spacing: .16em; }
-  .hero-location { max-width: 135px; text-align: right; }
+  .header-divider, .language-switch { display: none; }
   .mountain-logo svg { width: 37px; }
   .mountain-logo strong { font-size: 22px; }
   .mountain-logo small { display: none; }

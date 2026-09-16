@@ -8,23 +8,6 @@ const nav = [
   { label: "Experiences", children: ["Trekking", "Culture", "Wildlife", "Wellness"] },
   { label: "About Nepal" },
   { label: "Trip Planner" },
-  {
-    label: "More",
-    children: [
-      "Journey Details",
-      "Journal Entry",
-      "Our Trips",
-      "Trip Details",
-      "Our Guides",
-      "Testimonials",
-      "Gallery",
-      "FAQs",
-      {
-        label: "Layouts",
-        children: ["Header One", "Header Two", "Footer One", "Footer Two"],
-      },
-    ],
-  },
   { label: "Contact" },
 ];
 
@@ -124,7 +107,7 @@ export default function Header() {
       <div
         style={{
           ...shell,
-          maxWidth: 1640,
+          maxWidth: 1480,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -177,7 +160,7 @@ export default function Header() {
               width: 40,
               height: 40,
               borderRadius: "50%",
-              border: `1px solid ${light ? "rgba(255,255,255,0.4)" : "var(--line)"}`,
+              border: "none",
               background: "transparent",
               cursor: "pointer",
               display: "grid",
@@ -198,10 +181,13 @@ export default function Header() {
             </svg>
           </button>
 
+          <span className="header-divider" aria-hidden="true" />
+          <button className="language-switch" aria-label="Change language">
+            EN <span aria-hidden="true">⌄</span>
+          </button>
+
           <div className="header-cta">
-              <Button variant="solid" style={{ padding: "13px 24px", border: "1px solid var(--accent)" }}>
-                Plan a Trip
-            </Button>
+            <Button variant="solid" className="reference-gradient-button" style={{ padding: "13px 26px" }}>Plan a Trip</Button>
           </div>
 
           <button
