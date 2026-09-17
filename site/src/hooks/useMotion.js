@@ -108,6 +108,49 @@ export function useScrollMotion(key) {
         node.style.setProperty("--p", clamped.toFixed(4));
       });
 
+      document.querySelectorAll("[data-pin-progress]").forEach((node) => {
+        const rect = node.getBoundingClientRect();
+        const distance = Math.max(rect.height - viewport, 1);
+        const progress = Math.min(Math.max(-rect.top / distance, 0), 1);
+        node.style.setProperty("--pin-p", progress.toFixed(4));
+
+        const ease = (value) => 1 - Math.pow(1 - value, 3);
+        const range = (start, end) =>
+          ease(Math.min(Math.max((progress - start) / (end - start), 0), 1));
+
+        if (node.dataset.pinProgress === "symmetric") {
+          node.querySelectorAll("[data-pin-card]").forEach((card) => {
+            const index = Number(card.dataset.pinCard);
+            const distanceFromCenter = Math.abs(index - 2);
+            const start = distanceFromCenter === 0 ? 0 : distanceFromCenter === 1 ? 0.14 : 0.3;
+            const end = distanceFromCenter === 0 ? 0.34 : distanceFromCenter === 1 ? 0.53 : 0.72;
+            const phase = range(start, end);
+            const y = (1 - phase) * 900;
+            const rotation = (2 - index) * 3 * (1 - phase);
+            card.style.transform = `translate3d(0, ${y.toFixed(2)}px, 0) rotate(${rotation.toFixed(3)}deg)`;
+          });
+          node.querySelectorAll("[data-pin-caption]").forEach((caption) => {
+            const index = Number(caption.dataset.pinCaption);
+            const phase = range(0.16 + index * 0.13, 0.42 + index * 0.13);
+            caption.style.opacity = phase.toFixed(4);
+            caption.style.transform = `translate3d(0, ${((1 - phase) * 80).toFixed(2)}px, 0)`;
+          });
+        }
+
+        if (node.dataset.pinProgress === "mosaic") {
+          node.querySelectorAll("[data-pin-card]").forEach((card) => {
+            const index = Number(card.dataset.pinCard);
+            const phase = range(index * 0.025, 0.62 + index * 0.025);
+            const x = Number(card.dataset.startX || 0) * (1 - phase);
+            const y = Number(card.dataset.startY || 0) * (1 - phase);
+            const rotation = Number(card.dataset.rotate || 0) * (1 - phase);
+            const scale = 1 + (1 - phase) * Number(card.dataset.scale || 0.7);
+            card.style.opacity = Math.min(phase * 1.8, 1).toFixed(4);
+            card.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${rotation.toFixed(3)}deg) scale(${scale.toFixed(4)})`;
+          });
+        }
+      });
+
       const scrolled = window.scrollY;
       const max =
         document.documentElement.scrollHeight - viewport || 1;

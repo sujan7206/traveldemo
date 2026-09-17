@@ -72,17 +72,65 @@ function PostCard({ post }) {
   return <article className="post-card"><Link to={`/2025/12/03/${post.slug}/`}><span className="card-media" data-progress><img src={post.image} alt="" loading="lazy" /></span><p className="eyebrow">{post.category} · 9 months ago</p><h3>{post.title}</h3><span className="text-link">Read story →</span></Link></article>;
 }
 
+const scrollImages = [
+  "https://s3.wolfthemes.store/uploads/sites/63/2025/12/154276848-1456x816.webp",
+  "https://s3.wolfthemes.store/uploads/sites/63/2025/12/109204081-1456x816.webp",
+  "https://s3.wolfthemes.store/uploads/sites/63/2025/12/Anonymous-Explorer-with-Sunlit-Olive-Backpack-1456x816.webp",
+  "https://s3.wolfthemes.store/uploads/sites/63/2025/12/182144496-1456x816.webp",
+  "https://s3.wolfthemes.store/uploads/sites/63/2025/12/Adventurous-Young-Person-in-Snowy-Landscape-1456x816.webp",
+  "https://s3.wolfthemes.store/uploads/sites/63/2025/12/Winter-Trek-Camaraderie-1456x816.webp",
+  "https://s3.wolfthemes.store/uploads/sites/63/2025/12/Wintry-Portrait-of-a-Woman-1456x816.webp",
+  "https://s3.wolfthemes.store/uploads/sites/63/2025/12/Winter-Hiking-Adventure-1-1456x816.webp",
+  "https://s3.wolfthemes.store/uploads/sites/63/2025/12/Snowy-Mountaineer-1456x816.webp",
+];
+
+function ImageMosaicScroll() {
+  const starts = [[-420,-250,-8],[0,-500,5],[430,-300,8],[-520,60,-5],[0,0,0],[520,80,5],[-410,390,-7],[0,520,4],[430,400,7]];
+  return <section className="pin-section pin-mosaic" data-pin-progress="mosaic">
+    <div className="pin-stage">
+      <div className="mosaic-title"><h2 data-split>TECHNICAL EQUIPMENT</h2><p data-animate="rise">to reliable essentials</p></div>
+      <div className="mosaic-grid">{scrollImages.map((src, index) => <div className={`mosaic-card mosaic-${index + 1}`} data-pin-card={index} data-start-x={starts[index][0]} data-start-y={starts[index][1]} data-rotate={starts[index][2]} data-scale={index === 4 ? 1.2 : .7} key={src} style={{ backgroundImage: `url(${src})` }} />)}</div>
+    </div>
+  </section>;
+}
+
+function SymmetricGearScroll() {
+  return <section className="pin-section pin-symmetric" data-pin-progress="symmetric">
+    <div className="pin-stage symmetric-stage">
+      <div className="symmetric-captions">
+        <div data-pin-caption="0"><h4>Technical equipment</h4><p>to reliable essentials</p></div>
+        <div data-pin-caption="1"><h4>Every piece of gear</h4><p>is essential</p></div>
+        <div data-pin-caption="2"><h4>Navigating</h4><p>off-road routes</p></div>
+      </div>
+      <div className="symmetric-grid">{scrollImages.slice(0, 4).concat(scrollImages[5]).map((src, index) => <div className="symmetric-card" data-pin-card={index} key={src} style={{ backgroundImage: `url(${src})` }} />)}</div>
+    </div>
+  </section>;
+}
+
+function LatestEditorial() {
+  return <section className="latest-editorial section">
+    <div className="latest-intro" data-stagger="rise"><p className="eyebrow">Wildroad | Exploration</p><h2 data-split>LATEST POST</h2><p>Practical stories for moving confidently through exposed country, changing weather and long days beyond the road.</p><Link className="button" to="/blog-grid/">Discover</Link></div>
+    <div className="latest-six" data-stagger="rise" data-step="90">{posts.slice(0, 6).map((post) => <article key={post.slug}><Link to={`/2025/12/03/${post.slug}/`}><img src={post.image} alt="" loading="lazy" /><div><p>{post.category} · 9 months ago</p><h3>{post.title}</h3></div></Link></article>)}</div>
+  </section>;
+}
+
+function NewsletterPanel() {
+  const [hidden, setHidden] = useStored("nk-newsletter-hidden", false);
+  const [sent, setSent] = useState(false);
+  if (hidden) return null;
+  return <section className="newsletter-panel"><Backdrop src={images.snow} veil="shade" /><div data-stagger="rise"><p className="eyebrow light">Nordkapp field dispatch</p><h2 data-split>JOIN THE MAILING LIST</h2><h3>AND GET 30% OFF</h3>{sent ? <p className="newsletter-success">You are on the list. Check your inbox.</p> : <form onSubmit={(event) => { event.preventDefault(); setSent(true); }}><input required type="email" aria-label="Your email" placeholder="Your email" /><button type="submit">Subscribe →</button></form>}<button className="dismiss-newsletter" onClick={() => setHidden(true)}>Don't show this message again</button></div></section>;
+}
+
 function Home({ variant, add, toggleWish, wishlist }) {
   const shopFirst = variant.includes("Shop");
   const blogFirst = variant.includes("Blog");
+  const heroHome = variant === "Hero Home";
   return <main>
     <section className={`home-hero ${variant === "Hero Home" ? "hero-home" : ""}`}><Backdrop src={variant === "Hero Home" ? images.snow : images.hero} /><div className="hero-copy"><p className="eyebrow light" data-animate="rise">Nordkapp Outdoor · Est. 2026</p><h1 data-split>{shopFirst ? "GEAR FOR THE EDGE" : blogFirst ? "STORIES FROM THE WILD" : "UNFORGETTABLE ADVENTURES"}</h1><p data-animate="rise">Go beyond the familiar. Explore raw landscapes, practical field knowledge and equipment made for demanding places.</p><Link className="button light-button" data-animate="rise" to={shopFirst ? "/shop/" : "/adventure-standard/"}>{shopFirst ? "Shop equipment" : "Plan your adventure"}</Link></div><div className="hero-index" data-animate="fade"><span>71°10′21″N</span><span>MAGERØYA · NORWAY</span></div></section>
     {!shopFirst && <section className="section"><SectionHead eyebrow="Find your line" title="NEED ADVENTURE?" link="/adventure-standard/" label="View all adventures →" /><div className="adventure-grid" data-stagger="mask">{adventures.slice(0, 4).map((x) => <AdventureCard item={x} key={x.slug} />)}</div></section>}
-    <section className="statement"><p data-animate="rise">TECHNICAL EQUIPMENT</p><h2 data-split>FROM THE TRAILHEAD TO THE SUMMIT.</h2></section>
-    <section className="section"><SectionHead eyebrow="Reliable essentials" title="RECENT PRODUCTS" link="/shop/" label="Shop all gear →" /><div className="product-grid" data-stagger="mask">{products.slice(0, 4).map((x) => <ProductCard product={x} add={add} toggleWish={toggleWish} wished={wishlist.includes(x.id)} key={x.id} />)}</div></section>
-    <Marquee text="Built for adventure" />
-    <section className="image-break"><Backdrop src={images.aurora} veil="shade" /><div className="break-copy"><p className="eyebrow light" data-animate="rise">Field notes 026</p><h2 data-split>THE WILD BECOMES HOME.</h2><Link className="button light-button" data-animate="rise" to="/about/">Our philosophy</Link></div></section>
-    <section className="section"><SectionHead eyebrow="From the blog" title="LATEST POSTS" link="/blog-grid/" label="Read all stories →" /><div className="post-grid" data-stagger="mask">{posts.slice(0, 3).map((x) => <PostCard post={x} key={x.slug} />)}</div></section>
+    {heroHome ? <ImageMosaicScroll /> : <section className="statement"><p data-animate="rise">TECHNICAL EQUIPMENT</p><h2 data-split>FROM THE TRAILHEAD TO THE SUMMIT.</h2></section>}
+    <section className="section"><SectionHead eyebrow="Reliable essentials" title={heroHome ? "NEED GEAR?" : "RECENT PRODUCTS"} link="/shop/" label="Shop all gear →" /><div className="product-grid" data-stagger="mask">{products.slice(0, 4).map((x) => <ProductCard product={x} add={add} toggleWish={toggleWish} wished={wishlist.includes(x.id)} key={x.id} />)}</div></section>
+    {heroHome ? <><SymmetricGearScroll /><LatestEditorial /><NewsletterPanel /></> : <><Marquee text="Built for adventure" /><section className="image-break"><Backdrop src={images.aurora} veil="shade" /><div className="break-copy"><p className="eyebrow light" data-animate="rise">Field notes 026</p><h2 data-split>THE WILD BECOMES HOME.</h2><Link className="button light-button" data-animate="rise" to="/about/">Our philosophy</Link></div></section><section className="section"><SectionHead eyebrow="From the blog" title="LATEST POSTS" link="/blog-grid/" label="Read all stories →" /><div className="post-grid" data-stagger="mask">{posts.slice(0, 3).map((x) => <PostCard post={x} key={x.slug} />)}</div></section></>}
   </main>;
 }
 
