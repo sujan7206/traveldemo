@@ -37,6 +37,7 @@ function Header() {
         <nav className="service-nav" aria-label="Services">
           {services.map((s) => <Link key={s.slug} href={`/${s.slug}`}>{s.short}<span>⌄</span></Link>)}
         </nav>
+        <button className="search-button" aria-label="Search" />
         <button className="menu-button" aria-label="Open menu" onClick={() => setOpen(true)}><span></span><span></span><span></span></button>
       </div>
     </header>
@@ -103,6 +104,11 @@ function HomePage() {
       </article>)}
     </section>
 
+    <section className="audience-mini shell-wide">
+      <Link href="/corporate-advisory"><span>04</span><div><h3>Enterprise Alchemists</h3><p>For corporations Australia-wide</p></div><Arrow /></Link>
+      <Link href="/international-business-advisory"><span>05</span><div><h3>Global Pathfinders</h3><p>For international businesses</p></div><Arrow /></Link>
+    </section>
+
     <section className="awards-section">
       <div className="shell awards-inner"><div className="award-stat"><span className="laurel">{`{`}</span><strong>40</strong><span className="laurel">{`}`}</span><p>Top 100 Accounting Firms<br />List 2025</p></div>
       <div className="award-copy"><span className="eyebrow">National recognition</span><h2>Award-Winning Advice<br />That Puts People First</h2><div className="award-list"><span>Australian Financial Review</span><span>Australian Accounting Awards</span><span>Insurance Business Australia Awards</span></div><Link href="/about-us" className="text-link">See all of our awards <Arrow /></Link></div></div>
@@ -111,7 +117,7 @@ function HomePage() {
     <section className="services-section shell">
       <SectionHeading eyebrow="Our Services" title="Expertise for every ambition." copy="With a full range of financial, legal and technology solutions in one place, you can feel secure as your life evolves." action={<Link href="/contact-us" className="button outline">Let's Chat <Arrow /></Link>} />
       <div className="service-tabs" role="tablist">{services.map((s, i) => <button key={s.slug} className={i === activeService ? "active" : ""} onClick={() => setActiveService(i)}>{s.short}</button>)}</div>
-      <div className="service-feature">
+      <div className="service-feature" key={active.slug}>
         <div className="service-intro"><span>0{activeService + 1}</span><h3>{active.title}</h3><p>{active.intro}</p><Link href={`/${active.slug}`} className="text-link">All services <Arrow /></Link></div>
         <div className="service-items">{active.items.slice(0, 6).map((item, i) => <Link href={`/${slugify(item)}`} className="service-item" key={item}><span>0{i + 1}</span><h4>{item}</h4><p>{i % 2 ? "Practical support and trusted advice, tailored to your goals." : "Clear guidance to help you move forward with confidence."}</p><Arrow /></Link>)}</div>
       </div>
@@ -125,7 +131,7 @@ function HomePage() {
 
     <section className="testimonials shell">
       <SectionHeading eyebrow="Client stories" title="What Our Clients Say" action={<div className="review-controls"><button aria-label="Previous review" onClick={() => setReview((review + reviews.length - 1) % reviews.length)}>←</button><button aria-label="Next review" onClick={() => setReview((review + 1) % reviews.length)}>→</button></div>} />
-      <div className="testimonial"><span className="quote-mark">“</span><blockquote>{reviews[review][0]}</blockquote><div><strong>{reviews[review][1]}</strong><span>★★★★★ &nbsp; Google Review</span></div></div>
+      <div className="testimonial" key={review}><span className="quote-mark">“</span><blockquote>{reviews[review][0]}</blockquote><div><strong>{reviews[review][1]}</strong><span>★★★★★ &nbsp; Google Review</span></div></div>
     </section>
 
     <Offices compact />
@@ -180,6 +186,37 @@ function ListingPage({ type }) {
 function App() {
   const [path, setPath] = useState(window.location.pathname);
   useEffect(() => { const onPop = () => setPath(window.location.pathname); window.addEventListener("popstate", onPop); return () => window.removeEventListener("popstate", onPop); }, []);
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const selector = [
+      ".section-heading", ".audience-card", ".audience-mini > a", ".award-stat", ".award-copy",
+      ".service-tabs", ".journey-step", ".journey-callout", ".testimonial", ".map-art", ".office-panel",
+      ".leader-card", ".industries-inner > div", ".article-card", ".detail-intro > div", ".detail-card",
+      ".value-grid article", ".contact-layout > *",
+    ].join(",");
+    let observer;
+    const frame = window.requestAnimationFrame(() => {
+      const elements = [...document.querySelectorAll(selector)];
+      elements.forEach((element, index) => {
+        element.classList.add("reveal-ready");
+        element.style.setProperty("--reveal-delay", `${(index % 4) * 70}ms`);
+      });
+      if (reduceMotion) {
+        elements.forEach((element) => element.classList.add("is-visible"));
+        return;
+      }
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -45px" });
+      elements.forEach((element) => observer.observe(element));
+    });
+    return () => { window.cancelAnimationFrame(frame); observer?.disconnect(); };
+  }, [path]);
   const slug = path.replace(/^\//, "").replace(/\/$/, "");
   const service = services.find((s) => s.slug === slug);
   const detail = itemToService[slug];
@@ -193,7 +230,7 @@ function App() {
   else if (service) page = <ServicePage service={service} />;
   else if (detail) page = <ServicePage service={detail} detailTitle={detail.detailTitle} />;
   else page = <ServicePage service={services[0]} detailTitle={slug.split("-").map((x) => x.charAt(0).toUpperCase() + x.slice(1)).join(" ")} />;
-  return <><Header />{page}<Footer /></>;
+  return <><Header /><div className="route-stage" key={path}>{page}</div><Footer /></>;
 }
 
 export default App;
